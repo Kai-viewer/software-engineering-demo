@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2>{{ submission.title }}</h2>
+<p>作者：{{ submission.author_name }}　類別：{{ submission.category }}</p>
+<div class="content">{{ submission.content }}</div>
+<hr>
+<form class="inline" method="post" action="/editor/{{ submission.id }}/approve"><button>通過</button></form>
+<form class="inline" method="post" action="/editor/{{ submission.id }}/return"><button>退回</button></form>
+<a href="/editor">返回清單</a>
+{% endblock %}

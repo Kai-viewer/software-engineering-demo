@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2>沒有權限</h2>
+<p>目前登入的身分無法使用這個頁面。</p>
+{% if user %}
+<p>目前身分：{{ user.name }}（{{ '作者' if user.role == 'author' else '編輯' }}）</p>
+<a href="/">返回自己的頁面</a>
+<form method="post" action="/logout"><button>登出並切換帳號</button></form>
+{% else %}
+<a href="/login">返回登入</a>
+{% endif %}
+{% endblock %}

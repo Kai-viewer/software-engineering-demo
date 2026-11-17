@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+<p>作者：{{ user.name }}</p>
+<form action="/logout" method="post"><button>登出</button></form>
+<h2>我的稿件</h2>
+<a href="/author/new">新增投稿</a>
+<table>
+  <tr><th>類別</th><th>標題</th><th>審查狀態</th><th>操作</th></tr>
+  {% for item in submissions %}
+  <tr><td>{{ item.category }}</td><td>{{ item.title }}</td><td>{{ item.status }}</td><td>
+    {% if item.status == '編輯中' %}
+    <a href="/author/{{ item.id }}/edit">編輯</a>
+    <form class="inline" method="post" action="/author/{{ item.id }}/submit"><button>送出審查</button></form>
+    <form class="inline" method="post" action="/author/{{ item.id }}/delete" onsubmit="return confirm('確定刪除此稿件？')"><button>刪除</button></form>
+    {% endif %}
+  </td></tr>
+  {% else %}<tr><td colspan="4">目前沒有稿件</td></tr>{% endfor %}
+</table>
+{% endblock %}

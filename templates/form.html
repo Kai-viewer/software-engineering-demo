@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2>{{ '編輯稿件' if submission else '新增投稿' }}</h2>
+<form method="post" action="{{ '/author/' ~ submission.id ~ '/edit' if submission else '/author/new' }}">
+  <label>類別<br><input name="category" value="{{ submission.category if submission else '' }}" required></label><br>
+  <label>標題<br><input name="title" value="{{ submission.title if submission else '' }}" required></label><br>
+  <label>文章內容<br><textarea name="content" required>{{ submission.content if submission else '' }}</textarea></label><br>
+  <button>儲存</button> <a href="/author">返回</a>
+</form>
+{% endblock %}

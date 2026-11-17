@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+<p>編輯：{{ user.name }}</p>
+<form action="/logout" method="post"><button>登出</button></form>
+<h2>待審查清單</h2>
+<table>
+  <tr><th>作者</th><th>類別</th><th>標題</th><th>操作</th></tr>
+  {% for item in submissions %}
+  <tr><td>{{ item.author_name }}</td><td>{{ item.category }}</td><td>{{ item.title }}</td><td><a href="/editor/{{ item.id }}">查看稿件</a></td></tr>
+  {% else %}<tr><td colspan="4">目前沒有待審稿件</td></tr>{% endfor %}
+</table>
+{% endblock %}
